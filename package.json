@@ -1,0 +1,36 @@
+{
+  "name": "generator-vagabond",
+  "version": "0.1.0",
+  "description": "Vagabond Yeoman Generator",
+  "main": "app/index.js",
+  "files": [
+    "app"
+  ],
+  "scripts": {
+    "test": "mocha --timeout 20000 --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getvagabond/generator-vagabond.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "javascript",
+    "vagabond",
+    "serverless",
+    "aws",
+    "lambda"
+  ],
+  "author": "Hakan Dilek",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/getvagabond/generator-vagabond/issues"
+  },
+  "homepage": "https://github.com/getvagabond/generator-vagabond#readme",
+  "dependencies": {
+    "yeoman-generator": "^0.22.5"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}

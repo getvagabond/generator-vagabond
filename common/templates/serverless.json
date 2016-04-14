@@ -1,0 +1,8 @@
+{
+  "name": "<%= dasherizedBaseName %>",
+  "domain": "<%= dasherizedBaseName %>",
+  "notificationEmail": "<%= awsNotificationEmail %>",
+  "stage": "dev",
+  "region": "<%= awsRegion %>",
+  "profile" : "default"
+}

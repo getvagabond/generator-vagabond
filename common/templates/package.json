@@ -1,0 +1,26 @@
+{
+  "name": "<%= dasherizedBaseName %>",
+  "version": "0.0.1",
+  "description": "Description for <%= baseName %>",
+  "author": "me",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-if": "^2.0.0",
+    "gulp-jsonlint": "^1.1.2",
+    "gulp-load-plugins": "^1.2.0",
+    "require-dir": "^0.3.0",
+    "serverless": "^0.4.2"
+  },
+  "dependencies": {
+    "serverless-helpers-js": "~0.1.0"
+  }
+}

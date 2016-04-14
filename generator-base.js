@@ -1,6 +1,6 @@
 'use strict';
 var path = require('path'),
-  packagejs = require('../package.json'),
+  packagejs = require('./package.json'),
   util = require('util'),
   chalk = require('chalk');
 var yeoman = require('yeoman-generator');

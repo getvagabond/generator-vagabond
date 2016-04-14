@@ -19,6 +19,7 @@ module.exports = VagabondGenerator.extend({
     composeCommon: function() {
       this.composeWith('vagabond:common', {
         options: {
+          'skip-install': this.options['skip-install'],
           configOptions: configOptions
         }
       }, {

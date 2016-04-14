@@ -2,7 +2,7 @@
 var generators = require('yeoman-generator');
 var _ = require('lodash');
 var util = require('util');
-//var chalk = require('chalk');
+var chalk = require('chalk');
 var scriptBase = require('../generator-base');
 
 var VagabondCommonGenerator = generators.Base.extend({});
@@ -91,6 +91,32 @@ module.exports = VagabondCommonGenerator.extend({
       this.template('s-project.json', 's-project.json', this, {});
       this.template('serverless.json', 'serverless.json', this, {});
     }
-  }
+  },
 
+  install: function() {
+    var injectDependenciesAndConstants = function() {
+      if (this.options['skip-install']) {
+        this.log(
+          'After running ' + chalk.yellow.bold('npm install & bower install') + ' ...' +
+          '\n' +
+          '\nOr do all of the above:' +
+          '\n ' + chalk.yellow.bold('gulp install') +
+          '\n'
+        );
+      } else {
+        this.spawnCommand('gulp', ['install']);
+      }
+    };
+    if (!this.options['skip-install']) {
+      this.installDependencies({
+        callback: injectDependenciesAndConstants.bind(this)
+      });
+    } else {
+      injectDependenciesAndConstants.call(this);
+    }
+  },
+
+  end: function() {
+    this.log(chalk.green.bold('\nApp generated successfully.\n'));
+  }
 });

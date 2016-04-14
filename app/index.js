@@ -25,7 +25,17 @@ module.exports = VagabondGenerator.extend({
       }, {
         local: require.resolve('../common')
       });
+    },
+    composeGulp: function() {
+      this.composeWith('vagabond:gulp', {
+        options: {
+          configOptions: configOptions
+        }
+      }, {
+        local: require.resolve('../gulp')
+      });
     }
+
   }
 
 });

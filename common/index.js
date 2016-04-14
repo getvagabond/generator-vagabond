@@ -85,7 +85,6 @@ module.exports = VagabondCommonGenerator.extend({
       this.template('_eslintignore', '.eslintignore', this, {});
       this.template('_eslintrc', '.eslintrc', this, {});
       this.template('_gitignore', '.gitignore', this, {});
-      this.template('gulpfile.js', 'gulpfile.js', this, {});
       this.template('package.json', 'package.json', this, {});
       this.template('README.md', 'README.md', this, {});
       this.template('s-project.json', 's-project.json', this, {});
@@ -97,7 +96,7 @@ module.exports = VagabondCommonGenerator.extend({
     var injectDependenciesAndConstants = function() {
       if (this.options['skip-install']) {
         this.log(
-          'After running ' + chalk.yellow.bold('npm install & bower install') + ' ...' +
+          'After running ' + chalk.yellow.bold('npm install') + ' ...' +
           '\n' +
           '\nOr do all of the above:' +
           '\n ' + chalk.yellow.bold('gulp install') +

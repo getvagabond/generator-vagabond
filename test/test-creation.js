@@ -13,11 +13,16 @@ const expectedFiles = {
     '.eslintignore',
     '.eslintrc',
     '.gitignore',
-    'gulpfile.js',
     'package.json',
     'README.md',
     's-project.json',
     'serverless.json'
+  ],
+
+  gulp: [
+    'gulpfile.js',
+    'gulp/linting.js',
+    'gulp/serverless.js'
   ]
 
 };
@@ -38,6 +43,7 @@ describe('Vagabond generator', function() {
 
     it('creates expected default files', function() {
       assert.file(expectedFiles.common);
+      assert.file(expectedFiles.gulp);
     });
   });
 

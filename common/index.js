@@ -2,7 +2,7 @@
 var generators = require('yeoman-generator');
 var _ = require('lodash');
 var util = require('util');
-var chalk = require('chalk');
+//var chalk = require('chalk');
 var scriptBase = require('../generator-base');
 
 var VagabondCommonGenerator = generators.Base.extend({});
@@ -10,8 +10,7 @@ var VagabondCommonGenerator = generators.Base.extend({});
 util.inherits(VagabondCommonGenerator, scriptBase);
 
 /* Constants use throughout */
-const constants = require('../generator-constants'),
-  QUESTIONS = 3;
+const QUESTIONS = 3;
 
 var currentQuestion;
 var totalQuestions;
@@ -47,7 +46,7 @@ module.exports = VagabondCommonGenerator.extend({
               currentQuestion = current;
             }, true);
           },
-          store   : true
+          store: true
         },
         {
           type: 'input',
@@ -57,8 +56,8 @@ module.exports = VagabondCommonGenerator.extend({
               currentQuestion = current;
             }, true);
           },
-          default: "eu-west-1",
-          store   : true
+          default: 'eu-west-1',
+          store: true
         }
       ];
       this.prompt(prompts, function(props) {
@@ -66,7 +65,7 @@ module.exports = VagabondCommonGenerator.extend({
         this.awsNotificationEmail = props.awsNotificationEmail;
         done();
       }.bind(this));
-    },
+    }
   },
 
   configuring: {

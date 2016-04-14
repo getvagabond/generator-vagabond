@@ -7,12 +7,6 @@ var VagabondGenerator = generators.Base.extend({});
 
 util.inherits(VagabondGenerator, scriptBase);
 
-/* Constants use throughout */
-const constants = require('../generator-constants');
-
-var currentQuestion = 0;
-var totalQuestions = constants.QUESTIONS;
-
 var configOptions = {};
 
 module.exports = VagabondGenerator.extend({
@@ -28,8 +22,8 @@ module.exports = VagabondGenerator.extend({
           configOptions: configOptions
         }
       }, {
-          local: require.resolve('../common')
-        });
+        local: require.resolve('../common')
+      });
     }
   }
 

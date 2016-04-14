@@ -4,6 +4,7 @@ var minimist = require('minimist');
 var requireDir = require('require-dir');
 var chalk = require('chalk');
 var fs = require('fs');
+var log = require('gulp-util').log;
 
 // config
 gulp.paths = {
@@ -41,7 +42,7 @@ if (fs.existsSync('./gulp/.gulp_settings.json')) {
 options.env = options.env || 'dev';
 // print options
 if (defaults && defaults[task]) {
-  console.log(chalk.green('defaults for task \'' + task + '\': '), defaults[task]);
+  log(chalk.green('defaults for task \'' + task + '\': '), defaults[task]);
 }
 
 // load tasks

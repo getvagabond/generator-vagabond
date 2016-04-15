@@ -60,10 +60,18 @@ module.exports = VagabondGenerator.extend({
 
   },
 
+  initializing: {
+
+    displayLogo: function() {
+      this.printVagabondLogo();
+    }
+
+  },
+  
   prompting: {
 
     askForAppName: function() {
-      if (this.existingProject) return;
+      if (this.existingProject || this.baseName) return;
 
       this.askAppName(this, currentQuestion++, totalQuestions);
       configOptions.lastQuestion = currentQuestion;

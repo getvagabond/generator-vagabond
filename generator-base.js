@@ -16,15 +16,12 @@ util.inherits(Generator, yeoman.Base);
 
 Generator.prototype.printVagabondLogo = function() {
   this.log(' \n' +
-    chalk.green(' __      __               _                     _ \n') +
-    chalk.green(' \ \    / /              | |                   | |\n') +
-    chalk.green('  \ \  / /_ _  __ _  __ _| |__   ___  _ __   __| |\n') +
-    chalk.green('   \ \/ / _` |/ _` |/ _` | \'_ \ / _ \| \'_ \ / _` |\n') +
-    chalk.green('    \  / (_| | (_| | (_| | |_) | (_) | | | | (_| |\n') +
-    chalk.green('     \/ \__,_|\__, |\__,_|_.__/ \___/|_| |_|\__,_|\n') +
-    chalk.green('               __/ |                              \n') +
-    chalk.green('              |___/                               \n') +
-    this.log(chalk.white.bold('                            http://getvagabond.github.io\n')));
+    chalk.green('  /\\   /\\__ _  __ _  __ _| |__   ___  _ __   __| |\n') +
+    chalk.green('  \\ \\ / / _` |/ _` |/ _` | "_ \\ / _ \\| "_ \\ / _` |\n') +
+    chalk.green('   \\ V / (_| | (_| | (_| | |_) | (_) | | | | (_| |\n') +
+    chalk.green('    \\_/ \\__,_|\\__, |\\__,_|_.__/ \\___/|_| |_|\\__,_|\n') +
+    chalk.green('              |___/                               \n'));
+  this.log(chalk.white.bold('                            http://getvagabond.github.io\n'));
   this.log(chalk.white('Welcome to the Vagabond Generator ') + chalk.yellow('v' + packagejs.version));
   this.log(chalk.white('Application files will be generated in folder: ' + chalk.yellow(process.cwd())));
 };

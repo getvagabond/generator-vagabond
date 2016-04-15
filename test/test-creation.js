@@ -27,7 +27,7 @@ const expectedFiles = {
 
   ping: [
     'ping/lib/index.js',
-    'ping/ping/event.js',
+    'ping/ping/event.json',
     'ping/ping/handler.js',
     'ping/ping/s-function.json',
     'ping/package.json',

@@ -25,7 +25,7 @@ module.exports = VagabondPingGenerator.extend({
   writing: {
     writeCommonFiles: function() {
       this.template('lib/index.js',         'ping/lib/index.js', this, {});
-      this.template('ping/event.json',      'ping/ping/event.js', this, {});
+      this.template('ping/event.json',      'ping/ping/event.json', this, {});
       this.template('ping/handler.js',      'ping/ping/handler.js', this, {});
       this.template('ping/s-function.json', 'ping/ping/s-function.json', this, {});
       this.template('package.json',         'ping/package.json', this, {});

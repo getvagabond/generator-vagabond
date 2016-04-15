@@ -1,6 +1,5 @@
 'use strict';
 var generators = require('yeoman-generator');
-var _ = require('lodash');
 var util = require('util');
 var chalk = require('chalk');
 var scriptBase = require('../generator-base');
@@ -10,7 +9,8 @@ var VagabondCommonGenerator = generators.Base.extend({});
 util.inherits(VagabondCommonGenerator, scriptBase);
 
 /* Constants use throughout */
-const QUESTIONS = 3;
+const constants = require('../generator-constants'),
+  QUESTIONS = constants.COMMON_QUESTIONS;
 
 var currentQuestion;
 var totalQuestions;
@@ -24,13 +24,10 @@ module.exports = VagabondCommonGenerator.extend({
 
     currentQuestion = configOptions.lastQuestion ? configOptions.lastQuestion : 0;
     totalQuestions = configOptions.totalQuestions ? configOptions.totalQuestions : QUESTIONS;
+    this.baseName = configOptions.baseName;
   },
 
   prompting: {
-    askAppName: function() {
-      if (this.baseName) return;
-      this.askAppName(this, currentQuestion++, totalQuestions);
-    },
 
     askForAwsProperties: function() {
       if (this.existingProject) return;
@@ -69,13 +66,8 @@ module.exports = VagabondCommonGenerator.extend({
   },
 
   configuring: {
-    configureGlobal: function() {
-      // Application name modified, using each technology's conventions
-      this.camelizedBaseName = _.camelCase(this.baseName);
-      this.capitalizedBaseName = _.upperFirst(this.baseName);
-      this.dasherizedBaseName = _.kebabCase(this.baseName);
-      this.lowercaseBaseName = this.baseName.toLowerCase();
-      this.nativeLanguageShortName = this.enableTranslation && this.nativeLanguage ? this.nativeLanguage.split('-')[0] : 'en';
+    configure: function() {
+      this.configureGlobal();
     }
   },
 
@@ -92,30 +84,35 @@ module.exports = VagabondCommonGenerator.extend({
     }
   },
 
-  install: function() {
-    var injectDependenciesAndConstants = function() {
-      if (this.options['skip-install']) {
-        this.log(
-          'After running ' + chalk.yellow.bold('npm install') + ' ...' +
-          '\n' +
-          '\nOr do all of the above:' +
-          '\n ' + chalk.yellow.bold('gulp install') +
-          '\n'
-        );
-      } else {
-        this.spawnCommand('gulp', ['install']);
-      }
-    };
-    if (!this.options['skip-install']) {
-      this.installDependencies({
-        callback: injectDependenciesAndConstants.bind(this)
-      });
-    } else {
-      injectDependenciesAndConstants.call(this);
-    }
-  },
+  install: {
 
-  end: function() {
-    this.log(chalk.green.bold('\nApp generated successfully.\n'));
+    gulpInstall: function() {
+      var injectDependenciesAndConstants = function() {
+        if (this.options['skip-install']) {
+          this.log(
+            'After running ' + chalk.yellow.bold('npm install') + ' ...' +
+            '\n' +
+            '\nOr do all of the above:' +
+            '\n ' + chalk.yellow.bold('gulp install') +
+            '\n'
+          );
+        } else {
+          this.npmInstall();
+        }
+      };
+      if (!this.options['skip-install']) {
+        this.installDependencies({
+          callback: injectDependenciesAndConstants.bind(this)
+        });
+      } else {
+        injectDependenciesAndConstants.call(this);
+      }
+    },
+
+    serverlessInit : function() {
+      //TODO: this.spawnCommand('serverless', ['project-init']);
+    }
+
   }
+
 });

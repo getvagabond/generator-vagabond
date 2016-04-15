@@ -23,7 +23,16 @@ const expectedFiles = {
     'gulpfile.js',
     'gulp/linting.js',
     'gulp/serverless.js'
-  ]
+  ],
+
+  ping: [
+    'ping/lib/index.js',
+    'ping/ping/event.js',
+    'ping/ping/handler.js',
+    'ping/ping/s-function.json',
+    'ping/package.json',
+    'ping/s-component.json'
+  ]  
 
 };
 
@@ -44,6 +53,7 @@ describe('Vagabond generator', function() {
     it('creates expected default files', function() {
       assert.file(expectedFiles.common);
       assert.file(expectedFiles.gulp);
+      assert.file(expectedFiles.ping);
     });
   });
 
@@ -60,10 +70,11 @@ describe('Vagabond generator', function() {
     });
 
     it('creates expected files with correct application name', function() {
-      assert.file([
-        'package.json'
-      ]);
+      assert.file(['package.json']);
       assert.fileContent('package.json', /myapplication/);
+
+      assert.file(['ping/package.json']);
+      assert.fileContent('ping/package.json', /myapplication\-ping/);
     });
     
   });

@@ -4,8 +4,7 @@ var path = require('path'),
   util = require('util'),
   chalk = require('chalk');
 var yeoman = require('yeoman-generator');
-
-//const constants = require('./generator-constants');
+var _ = require('lodash');
 
 module.exports = Generator;
 
@@ -48,6 +47,7 @@ Generator.prototype.askAppName = function(generator, currentQuestion, totalQuest
 
   var done = generator.async();
   var getNumberedQuestion = this.getNumberedQuestion;
+
   generator.prompt({
     type: 'input',
     name: 'baseName',
@@ -69,4 +69,13 @@ Generator.prototype.askAppName = function(generator, currentQuestion, totalQuest
     generator.baseName = prompt.baseName;
     done();
   }.bind(generator));
+
+};
+
+Generator.prototype.configureGlobal = function() {
+  this.camelizedBaseName = _.camelCase(this.baseName);
+  this.capitalizedBaseName = _.upperFirst(this.baseName);
+  this.dasherizedBaseName = _.kebabCase(this.baseName);
+  this.lowercaseBaseName = this.baseName.toLowerCase();
+  this.nativeLanguageShortName = this.enableTranslation && this.nativeLanguage ? this.nativeLanguage.split('-')[0] : 'en';
 };

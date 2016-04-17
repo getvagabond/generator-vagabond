@@ -2,15 +2,8 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
-  GraphQLNonNull,
-  GraphQLInt,
-  GraphQLBoolean
+  GraphQLNonNull
 } from 'graphql';
-
-import {
-  GraphQLLimitedString,
-  GraphQLDateTime
-} from 'graphql-custom-types';
 
 //vagabond-needle-import-entity-to-schema
 

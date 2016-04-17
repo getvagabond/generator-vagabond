@@ -460,6 +460,7 @@ module.exports = VagabondEntityGenerator.extend({
     writeDynamoEntity: function () {
       this.fieldsAsArgs = this._fieldsAsArgs();
       this.fieldsAsList = this._fieldsAsList();
+      this.entityFields = this._entityFields(2);
       this.template('lib/_EntityDynamo.js', 'data/lib/' + this.entityClass + 'Dynamo.js', this, {});
     },
 
@@ -471,7 +472,7 @@ module.exports = VagabondEntityGenerator.extend({
     injectEntityintoFiles: function () {
       this._importEntityToSchema(this.entityClass);
       this._importEntityQueryToSchema(this.entityClass);
-      this._importEntityMutationToSchema(this.entityClass, this._entityFields(6));
+      this._importEntityMutationToSchema(this.entityClass);
       this._importEntityToSProjectList(this.entityClass);
       this._importEntityToSProjectDynamo(this.entityClass);
     }
@@ -526,7 +527,7 @@ module.exports = VagabondEntityGenerator.extend({
         needle: 'vagabond-needle-import-entity-to-schema',
         splicable: [
           'import ' + entityClass + ' from \'./' + entityClass + 'Schema\';',
-          'import { get' + entityClass + ', new' + entityClass + ' } from \'./' + entityClass + 'Dynamo\';\n'
+          'import { get' + entityClass + ', new' + entityClass + ',  args' + entityClass + '} from \'./' + entityClass + 'Dynamo\';\n'
         ]
       }, this);
     } catch (e) {
@@ -567,9 +568,8 @@ module.exports = VagabondEntityGenerator.extend({
    * Add a new entity mutation to the schema
    *
    * @param {string} entityClass - The name of the entity.
-   * @param {Object} entityFields - entity fields.
    */
-  _importEntityMutationToSchema: function (entityClass, entityFields) {
+  _importEntityMutationToSchema: function (entityClass) {
     try {
       
       var fullPath = 'data/lib/schema.js';
@@ -580,7 +580,7 @@ module.exports = VagabondEntityGenerator.extend({
           'new' + entityClass + ': {',
           '  type: ' + entityClass + ',',
           '  description: \'Create a ' + entityClass + '\',',
-          '  args: ' + entityFields + ',',
+          '  args: args' + entityClass + ',',
           '  resolve: new' + entityClass + '',
           '}\n'
         ]

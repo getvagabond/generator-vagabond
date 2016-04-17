@@ -1,5 +1,17 @@
 import Promise from 'bluebird';
 import AWS from 'aws-sdk';
+import {
+  GraphQLString,
+  GraphQLInt,
+  GraphQLBoolean
+} from 'graphql';
+/*
+import {
+  GraphQLLimitedString,
+  GraphQLDateTime
+} from 'graphql-custom-types';
+*/
+
 const dynamoConfig = {
   sessionToken: process.env.AWS_SESSION_TOKEN,
   region: process.env.AWS_REGION
@@ -52,3 +64,5 @@ export function new<%= entityClass %>(source, args) {
 
   });
 }
+
+export let args<%= entityClass %> = <%- entityFields %>;

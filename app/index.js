@@ -19,6 +19,8 @@ module.exports = VagabondGenerator.extend({
   constructor: function() {
     // Calling the super constructor is important so our generator is correctly set up
     generators.Base.apply(this, arguments);
+
+    this.withEntities = this.options['with-entities'];
   },
 
   configuring: {
@@ -56,6 +58,16 @@ module.exports = VagabondGenerator.extend({
       }, {
         local: require.resolve('../ping')
       });
+    },
+
+    composeData: function() {
+      this.composeWith('vagabond:data', {
+        options: {
+          configOptions: configOptions
+        }
+      }, {
+        local: require.resolve('../data')
+      });
     }
 
   },
@@ -79,10 +91,29 @@ module.exports = VagabondGenerator.extend({
     }
 
   },
+
+  writing: {
+
+    regenerateEntities: function () {
+      if (this.withEntities) {
+        this.getExistingEntities().forEach(function (entity) {
+          this.composeWith('vagabond:entity', {
+            options: {
+              regenerate: true,
+              'skip-install': true
+            },
+            args: [entity.name]
+          }, {
+            local: require.resolve('../entity')
+          });
+        }, this);
+      }
+    }
+  },
   
-  end: function() {
+  end: function () {
     this.log(chalk.green.bold('\nApp generated successfully.\n'));
-  }  
-  
+  }
+
 
 });

@@ -1,0 +1,21 @@
+{
+  "name": "data",
+  "runtime": "nodejs",
+  "custom": {
+    "optimize": {
+      "exclude": [
+        "aws-sdk"
+      ],
+      "transforms": [
+        {
+          "name": "babelify",
+          "opts": {
+            "presets": [
+              "es2015"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

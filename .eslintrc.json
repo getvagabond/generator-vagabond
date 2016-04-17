@@ -1,9 +1,20 @@
 {
+    "extends": ["eslint:recommended"],
     "env": {
         "node": true,
         "es6": true
     },
-    "extends": ["eslint:recommended"],
+    "ecmaFeatures": {
+        "sourceType": "module"
+    },
+    "parserOptions" : {
+        "sourceType": "module",
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true      
+        }      
+    },
     "rules": {
         "indent": [2, 2],
         "linebreak-style": 0,

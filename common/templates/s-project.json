@@ -50,28 +50,7 @@
                   "logs:PutLogEvents"
                 ],
                 "Resource": "arn:aws:logs:${region}:*:*"
-              },
-              {
-                "Effect": "Allow",
-                "Action": [
-                  "*"
-                ],
-                "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-users-${stage}"
-              },
-              {
-                "Effect": "Allow",
-                "Action": [
-                  "*"
-                ],
-                "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-activations-${stage}"
-              },
-              {
-                "Effect": "Allow",
-                "Action": [
-                  "*"
-                ],
-                "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-comments-${stage}"
-              }
+              }/* vagabond-needle-add-entity-to-list */
             ]
           },
           "Roles": [
@@ -80,53 +59,7 @@
             }
           ]
         }
-      },
-      "UsersDynamo": {
-        "Type": "AWS::DynamoDB::Table",
-        "DeletionPolicy": "Retain",
-        "Properties": {
-          "AttributeDefinitions": [
-            {
-              "AttributeName": "id",
-              "AttributeType": "S"
-            }
-          ],
-          "KeySchema": [
-            {
-              "AttributeName": "id",
-              "KeyType": "HASH"
-            }
-          ],
-          "ProvisionedThroughput": {
-            "ReadCapacityUnits": 1,
-            "WriteCapacityUnits": 1
-          },
-          "TableName": "${project}-users-${stage}"
-        }
-      },
-      "ActivationsDynamo": {
-        "Type": "AWS::DynamoDB::Table",
-        "DeletionPolicy": "Retain",
-        "Properties": {
-          "AttributeDefinitions": [
-            {
-              "AttributeName": "id",
-              "AttributeType": "S"
-            }
-          ],
-          "KeySchema": [
-            {
-              "AttributeName": "id",
-              "KeyType": "HASH"
-            }
-          ],
-          "ProvisionedThroughput": {
-            "ReadCapacityUnits": 1,
-            "WriteCapacityUnits": 1
-          },
-          "TableName": "${project}-activations-${stage}"
-        }
-      }
+      }/* vagabond-needle-add-entity-dynamo */      
     },
     "Outputs": {
       "IamRoleArnLambda": {
